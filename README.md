@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Weather Forecast Application
 
 A simple weather forecast application that uses Open-Meteo API for weather data and OpenStreetMap for location services. Built with Express, SQLite, and a modern frontend using Tailwind CSS.
@@ -69,3 +70,7 @@ A simple weather forecast application that uses Open-Meteo API for weather data 
 ## License
 
 MIT 
+=======
+# weather-forecast
+free webapp for a location specified weather forectast
+>>>>>>> 86c4979775f6145060da846091146226bc7fc2be
