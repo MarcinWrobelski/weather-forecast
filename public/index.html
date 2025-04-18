@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Excon:wght@500&family=Ranade:wght@300&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-[#1a1a1a] min-h-screen transition-colors duration-200">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-[#3d85c6]">Weather Forecast</h1>
+            <button id="themeToggle"
+                class="p-2 rounded-lg bg-[#2a2a2a] hover:bg-[#333333] transition-colors duration-200">
+                <svg class="w-6 h-6 text-[#3d85c6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="themeIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Map Section -->
+            <div class="bg-[#2a2a2a] rounded-lg shadow-lg p-4 transition-colors duration-200">
+                <h2 class="text-2xl font-semibold mb-4 text-[#3d85c6]">Select Location</h2>
+                <div id="map" class="h-96 rounded-lg"></div>
+                <div class="mt-4">
+                    <button id="saveLocation"
+                        class="bg-[#3d85c6] text-white px-4 py-2 rounded hover:bg-[#4a9ae0] transition-colors duration-200">
+                        Save Current Location
+                    </button>
+                </div>
+            </div>
+
+            <!-- Weather Display Section -->
+            <div class="bg-[#2a2a2a] rounded-lg shadow-lg p-4 transition-colors duration-200">
+                <h2 class="text-2xl font-semibold mb-4 text-[#3d85c6]">Weather Information</h2>
+                <div id="weatherInfo" class="space-y-4">
+                    <div class="text-center text-gray-300">
+                        Select a location on the map to see weather information
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Locations Section -->
+        <div class="mt-8 bg-[#2a2a2a] rounded-lg shadow-lg p-4 transition-colors duration-200">
+            <h2 class="text-2xl font-semibold mb-4 text-[#3d85c6]">Saved Locations</h2>
+            <div id="savedLocations" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Saved locations will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

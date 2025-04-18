@@ -1,0 +1,191 @@
+/* Base styles */
+body {
+    font-family: 'Ranade', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Excon', sans-serif;
+    font-weight: 500;
+}
+
+#map {
+    z-index: 1;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.weather-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideUp 0.5s ease-out;
+}
+
+.weather-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    background-color: #333333;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.weather-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.location-card {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideUp 0.5s ease-out;
+}
+
+.location-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    background-color: #333333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.weather-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Map styles */
+.leaflet-tile-pane {
+    filter: brightness(0.5) contrast(1.2);
+    transition: filter 0.3s ease;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    background-color: #2a2a2a;
+    color: #3d85c6;
+    border: none;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+    background-color: #333333;
+    transform: scale(1.1);
+}
+
+.leaflet-control-attribution {
+    background-color: rgba(26, 26, 26, 0.7) !important;
+    color: #ffffff !important;
+    transition: opacity 0.3s ease;
+}
+
+.leaflet-popup-content-wrapper {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    animation: slideUp 0.3s ease-out;
+}
+
+.leaflet-popup-tip {
+    background-color: #2a2a2a;
+}
+
+/* Dark mode map styles */
+.dark .leaflet-tile-pane {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+}
+
+.dark .leaflet-control-zoom-in,
+.dark .leaflet-control-zoom-out {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+
+.dark .leaflet-control-zoom-in:hover,
+.dark .leaflet-control-zoom-out:hover {
+    background-color: #4b5563;
+}
+
+/* Button animations */
+button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Temperature animation */
+.temperature {
+    animation: pulse 2s infinite;
+}
+
+/* Loading animation */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.03),
+            transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
