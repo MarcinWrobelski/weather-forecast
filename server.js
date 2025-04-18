@@ -3,17 +3,24 @@ const cors = require('cors');
 const axios = require('axios');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Ensure database directory exists
+const dbDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dbDir)) {
+    fs.mkdirSync(dbDir);
+}
 
 // Database setup
-const db = new sqlite3.Database('weather.db', (err) => {
+const db = new sqlite3.Database(path.join(dbDir, 'weather.db'), (err) => {
     if (err) {
         console.error('Error opening database:', err);
     } else {
@@ -83,6 +90,17 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-}); 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Something went wrong!' });
+});
+
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+// Deploy on Render
+// git remote add origin <your-github-repo-url>
+// git push -u origin main
